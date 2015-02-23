@@ -1,6 +1,3 @@
-<?php 
-    include_once './config.php';
-?>
 <nav class="navbar navbar-default" role="navigation">
   <!-- El logotipo y el icono que despliega el menú se agrupan
        para mostrarlos mejor en los dispositivos móviles -->
@@ -19,7 +16,7 @@
        otro elemento que se pueda ocultar al minimizar la barra -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="index.php">Inicio</a></li>
+      <li class="active"><a href="<?php echo INICIO ?>index.php">Inicio</a></li>
       
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">

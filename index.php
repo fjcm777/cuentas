@@ -9,9 +9,9 @@ include_once './config.php';
         <link rel="stylesheet" href="css/bootstrap.min.css">
     </head>
     <body>
-         <?php include_once (INICIO.'menu.php'); ?>
-        <script src="js/jquery-2.1.3.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+         <?php include_once 'menu.php'; ?>
+        <script src="<?php echo INICIO; ?>js/jquery-2.1.3.min.js"></script>
+        <script src="<?php echo INICIO; ?>js/bootstrap.min.js"></script>
     </body>
 </html>
 

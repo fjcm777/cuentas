@@ -4,8 +4,8 @@
  * Inicio 17/02/2015
  */
 include_once '../../config.php';
-require_once INICIO.'Conexion.php';
-require_once INICIO.'catalogos/MetodosCatalogos.php';
+require_once '../../Conexion.php';
+require_once '../MetodosCatalogos.php';
 
 class CategoriasCuentas implements MetodosCatalogos {
 
