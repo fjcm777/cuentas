@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <!-- inicio 17/02/2015 -->
 <?php
-//include_once '../../config.php';
-
 include_once './CategoriasCuentas.php';
 
 $cat_cuenta = new CategoriasCuentas();
 
 $cate = $cat_cuenta->leerDatos();
-//print_r($cate);
 ?>
 <html>
     <head>
@@ -41,8 +38,8 @@ $cate = $cat_cuenta->leerDatos();
                         <td>" . $cat['idcategorias'] . "</td>
                         <td>" . $cat['categoria'] . "</td>
                         <td>" . $cat['nombre'] . "</td>
-                        <td>" . '<a href="categorias_cuentas_procesar.php?idcategorias=' . $id . '">Editar</a> ' . "<td>
-                        <td>" . '<a href="categorias_cuentas_procesar.php?idcategorias=' . $id . '">Eliminar</a>' . "</td>
+                        <td>" . '<a href="<?php echo INICIO;?>catalogos/categoriascuentas/categorias_cuentas_procesar.php?idcategorias=' . $id . '">Editar</a> ' . "<td>
+                        <td>" . '<a href="<?php echo INICIO;?>catalogos/categoriascuentas/categorias_cuentas_procesar.php?idcategorias=' . $id . '">Inactiva</a>' . "</td>
                         </tr>";
                             }
                             ?>
