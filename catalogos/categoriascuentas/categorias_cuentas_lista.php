@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- inicio 17/02/2015 -->
 <?php
-include_once '../../config.php';
+//include_once '../../config.php';
 
 include_once './CategoriasCuentas.php';
 

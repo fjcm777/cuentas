@@ -16,7 +16,7 @@
        otro elemento que se pueda ocultar al minimizar la barra -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="<?php echo INICIO ?>index.php">Inicio</a></li>
+      <li class="active"><a href="<?php echo INICIO; ?>index.php">Inicio</a></li>
       
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -37,8 +37,8 @@
           Catálogos <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="lista_catalogo_cuentas.php">Catálogo de Cuentas</a></li>
-          <li><a href="lista_grupos_cuentas.php">Grupos de Cuentas</a></li>
+          <li><a href="<?php echo INICIO;?>catalogos/catalogocuentas/lista_catalogo_cuentas.php">Catálogo de Cuentas</a></li>
+          <li><a href="<?php echo INICIO;?>catalogos/gruposcuentas/lista_grupos_cuentas.php">Grupos de Cuentas</a></li>
           <li><a href="<?php echo INICIO;?>catalogos/categoriascuentas/categorias_cuentas_lista.php">Categorías de Cuentas</a></li>
           <li class="divider"></li>
           <li><a href="#">Acción #4</a></li>
