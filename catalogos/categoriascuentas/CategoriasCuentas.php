@@ -8,30 +8,31 @@ require_once '../../Conexion.php';
 require_once '../MetodosCatalogos.php';
 
 class CategoriasCuentas implements MetodosCatalogos {
-
-    private $idcategoriacuenta;
     private $categoriacuenta;
-    private $estructurabase;
+    private $idestructurabase;
+    
+    private $listaestructurabase;
 
     public function __construct() {
         
     }
-
-    public function getIdcategoriacuenta() {
+    
+    public function getCategoria() {
+        return $this->idestructurabase;
+    }
+    
+    public function getIdEstructurabase() {
         return $this->idcategoriacuenta;
     }
 
-    public function getCategoriacuenta() {
-        return $this->categoriacuenta;
-    }
-
-    public function setIdcategoriacuenta($idcategoriacuenta) {
-        $this->idcategoriacuenta = $idcategoriacuenta;
-    }
-
-    public function setCategoriacuenta($categoriacuenta) {
+    public function setCategoria($categoriacuenta) {
         $this->categoriacuenta = $categoriacuenta;
     }
+    
+     public function setIdEstructurabase($idestructurabase) {
+        return $this->idestructurabase = $idestructurabase;
+    }
+
 
     public function buscarPorId($id) {
         $conecta = Conexion::open();
@@ -48,20 +49,20 @@ class CategoriasCuentas implements MetodosCatalogos {
         
     }
 
-    public function crearRegistro($nombre_categoria,$estructura_base) {
+    public function crearRegistro($cat_cuentas) {
             $conecta = Conexion::open();
             try{
-                $crear_categorias_cuentas = "INSERT INTO categoriascuentas (categoria,idestructurabase,estado)VALUES ('$nombre_categoria',$estructura_base,1)";
+                $crear_categorias_cuentas = "INSERT INTO categoriascuentas (categoria,idestructurabase,estado)VALUES ('$cat_cuentas->categoriacuenta',$cat_cuentas->idestructurabase,1)";
                 $conecta->query($crear_categorias_cuentas);
             }catch(Exception $exc){
                 echo $exc->getTraceAsString();
             }
     }
 
-    public function editarRegistro($id,$nuevo_nombre_categoria,$nuevo_estructura_base) {
+    public function editarRegistro($cat_cuentas,$id) {
         $conecta = Conexion::open();
             try{
-                $editar_categorias_cuentas = "UPDATE categoriascuentas SET categoria = '$nuevo_nombre_categoria',idestructurabase = $nuevo_estructura_base WHERE idcategorias =$id";
+                $editar_categorias_cuentas = "UPDATE categoriascuentas SET categoria = '$cat_cuentas->categoriacuenta',idestructurabase = $cat_cuentas->idestructurabase WHERE idcategorias =$id";
                 $conecta->query($editar_categorias_cuentas);
             }catch(Exception $exc){
                 echo $exc->getTraceAsString();
@@ -99,12 +100,12 @@ class CategoriasCuentas implements MetodosCatalogos {
                 $consulta_estructura_base = "SELECT * FROM estructurabase ";
                 $lista_estructura_base = $conecta->query($consulta_estructura_base);
                 while ($fila_estructura_base = $lista_estructura_base->fetch_array(MYSQLI_ASSOC)) {
-                $this->estructurabase[] = $fila_estructura_base;
+                $this->listaestructurabase[] = $fila_estructura_base;
             }
             }catch(Exception $exc){
                 echo $exc->getTraceAsString();
             }
-            return $this->estructurabase;
+            return $this->listaestructurabase;
     }
 }
 

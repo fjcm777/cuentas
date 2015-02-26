@@ -3,7 +3,7 @@
 include_once './CategoriasCuentas.php';
 
 $cat_cuenta = new CategoriasCuentas();
-$cate = $cat_cuenta->leerDatos();
+//$cate = $cat_cuenta->leerDatos();
 
 $post = filter_input(INPUT_POST, 'operacion'); 
 $get = filter_input(INPUT_GET, 'operacion');
@@ -27,28 +27,29 @@ switch($operacion){
      break;
      
       case 'crear':
-      $nombre_categoria = filter_input(INPUT_POST, 'nombre_categoria');
-      $estructura_base = filter_input(INPUT_POST, 'estructura_base');
-
-         if(isset($nombre_categoria)&& !empty($nombre_categoria)&& isset($estructura_base) && !empty($nombre_categoria)){
-              $cat_cuenta = new CategoriasCuentas();
-              $cat_cuenta->crearRegistro($nombre_categoria,$estructura_base);
-                        
-               header("Location: categorias_cuentas_lista.php");
+          
+      $cat_cuenta->setCategoria(filter_input(INPUT_POST, 'nombre_categoria'));
+      $cat_cuenta->setIdEstructurabase(filter_input(INPUT_POST, 'estructura_base'));
+        
+         if(isset($cat_cuenta)){
+              $cat_cuenta->crearRegistro($cat_cuenta);
+              
+        header("Location: categorias_cuentas_lista.php");
                      }
      break;
      
      case'editar':
-     $nombre_categoria = filter_input(INPUT_POST, 'nombre_categoria');
-     $estructura_base = filter_input(INPUT_POST, 'estructura_base');
+         
+     $cat_cuenta->setCategoria(filter_input(INPUT_POST, 'nombre_categoria'));
+     $cat_cuenta->setIdEstructurabase(filter_input(INPUT_POST, 'estructura_base'));
      $id = filter_input(INPUT_POST, 'id_editar');
-
-                    
-     $cat_cuenta = new CategoriasCuentas();
-     $cat_cuenta->editarRegistro($id,$nombre_categoria,$estructura_base);
+     
+      if (isset($cat_cuenta)) {              
+            $cat_cuenta->editarRegistro($cat_cuenta,$id);
                         
-     header("Location: categorias_cuentas_lista.php");
-                    
+        header("Location: categorias_cuentas_lista.php");
+      }
+      
     break;
      
     

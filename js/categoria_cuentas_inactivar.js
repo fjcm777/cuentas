@@ -1,3 +1,9 @@
 
 
-    document.on('ready',alert('ok')/*function comfirmacion_desactivar(){}*/);
+var boton = document.getElementById('desactivar');  
+  
+
+
+$(document).on('click',comfirma());
+  
+  
