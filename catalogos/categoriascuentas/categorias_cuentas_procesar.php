@@ -16,6 +16,7 @@ if(!empty($get)){
 }
 
 switch($operacion){
+    
     case 'inactivar':
     $id_categoria = filter_input(INPUT_GET, 'idcategorias');
     if(!empty($id_categoria)){
@@ -44,9 +45,11 @@ switch($operacion){
      $cat_cuenta->setIdEstructurabase(filter_input(INPUT_POST, 'estructura_base'));
      $id = filter_input(INPUT_POST, 'id_editar');
      
-      if (isset($cat_cuenta)) {              
-            $cat_cuenta->editarRegistro($cat_cuenta,$id);
-                        
+      if (isset($cat_cuenta)&& isset($id)) {  
+          
+        $cat_cuenta->editarRegistro($cat_cuenta,$id);
+        
+                      
         header("Location: categorias_cuentas_lista.php");
       }
       

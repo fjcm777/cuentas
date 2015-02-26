@@ -8,8 +8,8 @@ require_once '../../Conexion.php';
 require_once '../MetodosCatalogos.php';
 
 class CategoriasCuentas implements MetodosCatalogos {
-    private $categoriacuenta;
-    private $idestructurabase;
+    public$categoriacuenta;
+    public $idestructurabase;
     
     private $listaestructurabase;
 
@@ -22,7 +22,7 @@ class CategoriasCuentas implements MetodosCatalogos {
     }
     
     public function getIdEstructurabase() {
-        return $this->idcategoriacuenta;
+        return $this->idestructurabase;
     }
 
     public function setCategoria($categoriacuenta) {
@@ -30,7 +30,7 @@ class CategoriasCuentas implements MetodosCatalogos {
     }
     
      public function setIdEstructurabase($idestructurabase) {
-        return $this->idestructurabase = $idestructurabase;
+        $this->idestructurabase = $idestructurabase;
     }
 
 

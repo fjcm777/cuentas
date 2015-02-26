@@ -47,7 +47,7 @@ foreach ($cate as $cat) {
                                     $estb = $cat_cuenta->listaEstructuraBase();
                                     
                                     foreach ($estb as $est){
-                                        echo '<option value="'.$cest['idestructurabase'].'">'.$est['nombre'].'</option>';
+                                        echo '<option value="'.$est['idestructurabase'].'">'.$est['nombre'].'</option>';
                                     }  
                                     ?>    
                                     </select>
