@@ -41,7 +41,7 @@
           <li><a href="<?php echo INICIO;?>catalogos/gruposcuentas/lista_grupos_cuentas.php">Grupos de Cuentas</a></li>
           <li><a href="<?php echo INICIO;?>catalogos/categoriascuentas/categorias_cuentas_lista.php">Categorías de Cuentas</a></li>
           <li class="divider"></li>
-          <li><a href="#">Acción #4</a></li>
+          <li><a href="<?php echo INICIO;?>catalogos/categoriascuentas/categorias_cuentas_lista_inactivos.php">Catálogo de Cuentas Inactivas</a></li>
         </ul>
       </li>
     </ul>

@@ -74,7 +74,21 @@ class CategoriasCuentas implements MetodosCatalogos {
         $conecta = Conexion::open();
         try {
             $consulta_categorias_cuentas = "SELECT * FROM categorias_cuentas_view WHERE estado = 1";
-            $lista_categorias_cuentas = $conecta->query($consulta_categorias_cuentas);
+            $lista_categorias_cuentas = $conecta->query($consulta_categorias_cuentas) or trigger_error($conecta->error."[$consulta_categorias_cuentas]");
+            while ($fila_categoria_cuenta = $lista_categorias_cuentas->fetch_array(MYSQLI_ASSOC)) {
+                $this->categoriacuenta[] = $fila_categoria_cuenta;
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+        return $this->categoriacuenta;
+    }
+    
+    public function leerDatosInactivos() {
+        $conecta = Conexion::open();
+        try {
+            $consulta_categorias_cuentas = "SELECT * FROM categorias_cuentas_view WHERE estado = 0";
+            $lista_categorias_cuentas = $conecta->query($consulta_categorias_cuentas) or trigger_error($conecta->error."[$consulta_categorias_cuentas]");
             while ($fila_categoria_cuenta = $lista_categorias_cuentas->fetch_array(MYSQLI_ASSOC)) {
                 $this->categoriacuenta[] = $fila_categoria_cuenta;
             }
@@ -84,7 +98,17 @@ class CategoriasCuentas implements MetodosCatalogos {
         return $this->categoriacuenta;
     }
 
-    public function activarDesactivarCatalogo($id) {
+    public function activarCatalogo($id) {
+        $conecta = Conexion::open();
+            try{
+                $editar_categorias_cuentas = "UPDATE categoriascuentas SET estado = 1 WHERE idcategorias =$id";
+                $conecta->query($editar_categorias_cuentas);
+            }catch(Exception $exc){
+                echo $exc->getTraceAsString();
+            }
+    }
+    
+    public function desactivarCatalogo($id) {
         $conecta = Conexion::open();
             try{
                 $editar_categorias_cuentas = "UPDATE categoriascuentas SET estado = 0 WHERE idcategorias =$id";

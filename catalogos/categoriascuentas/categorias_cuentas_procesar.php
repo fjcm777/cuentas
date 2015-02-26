@@ -21,9 +21,19 @@ switch($operacion){
     $id_categoria = filter_input(INPUT_GET, 'idcategorias');
     if(!empty($id_categoria)){
         $cat_cuenta = new CategoriasCuentas();
-        $cat_cuenta->activarDesactivarCatalogo($id_categoria);
+        $cat_cuenta->desactivarCatalogo($id_categoria);
         
         header("Location: categorias_cuentas_lista.php");
+     }   
+     break;
+     
+     case 'activar':
+    $id_categoria = filter_input(INPUT_GET, 'idcategorias');
+    if(!empty($id_categoria)){
+        $cat_cuenta = new CategoriasCuentas();
+        $cat_cuenta->activarCatalogo($id_categoria);
+        
+        header("Location: categorias_cuentas_lista_inactivos.php");
      }   
      break;
      

@@ -4,7 +4,7 @@
 include_once './CategoriasCuentas.php';
 
 $cat_cuenta = new CategoriasCuentas();
-$cate = $cat_cuenta->leerDatos();
+$cate = $cat_cuenta->leerDatosInactivos();
          
 ?>
 <html>
@@ -41,7 +41,7 @@ $cate = $cat_cuenta->leerDatos();
                         <td>" . $cat['categoria'] . "</td>
                         <td>" . $cat['nombre'] . "</td>
                         <td>" . '<a href="categorias_cuentas_editar.php?idcategorias='. $id .'">Editar</a> ' . "</td>
-                        <td>" . '<a id="desactivar" href="categorias_cuentas_procesar.php?idcategorias='. $id .'&operacion=inactivar">Inactiva</a>' . "</td>
+                        <td>" . '<a id="desactivar" href="categorias_cuentas_procesar.php?idcategorias='. $id .'&operacion=activar">Activar</a>' . "</td>
                         </tr>";
                             }}else{?>
                                
