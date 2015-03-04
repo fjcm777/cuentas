@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!-- inicio 17/02/2015 -->
 <?php
-include_once './CategoriasCuentas.php';
+include_once './GruposCuentas.php';
 
-$cat_cuenta = new CategoriasCuentas();
-$cate = $cat_cuenta->leerDatosInactivos();
+$grup_cuenta = new GruposCuentas();
+$grup = $grup_cuenta->leerDatosInactivos();
          
 ?>
 <html>
@@ -19,27 +19,33 @@ $cate = $cat_cuenta->leerDatosInactivos();
             <div class="row">
                 <div class="span3 well-sm"></div>
                 <div class="span3 well">
-                    <h4><center>Lista de categoria de cuentas inactivas</center></h4>
+                    <h4><center>Lista de grupos de cuentas</center></h4>
+                    <div class="navbar navbar-inner block-header">
+                        <a href="<?php echo INICIO;?>catalogos/gruposcuentas/grupos_cuentas_lista.php" class="btn btn-success">Volver a lista de Grupos</a>
+                    </div>
                     <div class="block-content collapse in"> 
                         <table class="table table-striped table-bordered">
                             <tr>
                                 <th>ID</th>
-                                <th>Categoría</th>
-                                <th>Clasificación Principal</th>
-                                <th colspan="2">Acción</th>
+                                <th>Nombre del Grupo</th>
+                                <th>Nivel</th>
+                                <th>Titulo Superior</th>
+                                <th>Categoria</th>
+                                <th>Acción</th>
                             </tr>
                             <?php
                             
-                            if(!empty($cate)){
-                            foreach ($cate as $cat) {
-                                $id = $cat['idcategorias'];
+                            if(!empty($grup)){
+                            foreach ($grup as $cat) {
+                                $id = $cat['idgrupo'];
                                 echo"
                         <tr>
-                        <td>" . $cat['idcategorias'] . "</td>
+                        <td>" . $cat['idgrupo'] . "</td>
+                        <td>" . $cat['grupo'] . "</td>
+                            <td>" .'nivel'. "</td>
+                        <td>" . $cat['TituloSuperior'] . "</td>
                         <td>" . $cat['categoria'] . "</td>
-                        <td>" . $cat['nombre'] . "</td>
-                        <td>" . '<a href="categorias_cuentas_editar.php?idcategorias='. $id .'">Editar</a> ' . "</td>
-                        <td>" . '<a href="categorias_cuentas_procesar.php?idcategorias='. $id .'&operacion=activar">Activar</a>' . "</td>
+                        <td>" . '<a href="grupos_cuentas_procesar.php?idgrupo='. $id .'&operacion=activar">Activar</a>' . "</td>
                         </tr>";
                             }}else{?>
                                

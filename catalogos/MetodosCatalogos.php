@@ -11,6 +11,6 @@ interface MetodosCatalogos{
     public function crearRegistro($var1);
     public function editarRegistro($var1,$var2);
     public function buscarPorId($var1);
-    public function desactivarCatalogo($var1);
-    public function activarCatalogo($var1);
+    public function desactivarRegistro($var1);
+    public function activarRegistro($var1);
 }

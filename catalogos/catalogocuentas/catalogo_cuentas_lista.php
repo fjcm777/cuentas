@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!-- inicio 17/02/2015 -->
 <?php
-include_once './CategoriasCuentas.php';
+include_once './CatalogoCuentas.php';
 
-$cat_cuenta = new CategoriasCuentas();
-$cate = $cat_cuenta->leerDatosInactivos();
+$cata_cuenta = new CatlogoCuentas();
+$cata = $cata_cuenta->leerDatos();
          
 ?>
 <html>
@@ -19,27 +19,33 @@ $cate = $cat_cuenta->leerDatosInactivos();
             <div class="row">
                 <div class="span3 well-sm"></div>
                 <div class="span3 well">
-                    <h4><center>Lista de categoria de cuentas inactivas</center></h4>
+                    <h4><center>Lista de cuentas</center></h4>
+                    <div class="navbar navbar-inner block-header">
+                        <a href="<?php echo INICIO;?>catalogos/catalogocuentas/catalogo_cuentas_crear.php" class="btn btn-success">Crear Nueva Cuenta</a>
+                        <a href="<?php echo INICIO;?>catalogos/catalogocuentas/catalogo_cuentas_lista_inactivos.php" class="btn btn-success">Lista Cuentas Inactivas</a>
+                    </div>
                     <div class="block-content collapse in"> 
                         <table class="table table-striped table-bordered">
                             <tr>
                                 <th>ID</th>
-                                <th>Categoría</th>
-                                <th>Clasificación Principal</th>
+                                <th>Cuenta contable</th>
+                                <th>Grupo cuentas</th>
+                                <th>Tipo cuenta</th>
                                 <th colspan="2">Acción</th>
                             </tr>
                             <?php
                             
-                            if(!empty($cate)){
-                            foreach ($cate as $cat) {
-                                $id = $cat['idcategorias'];
+                            if(!empty($cata)){
+                            foreach ($cata as $cat) {
+                                $id = $cat['idcuentacontable'];
                                 echo"
                         <tr>
-                        <td>" . $cat['idcategorias'] . "</td>
-                        <td>" . $cat['categoria'] . "</td>
-                        <td>" . $cat['nombre'] . "</td>
-                        <td>" . '<a href="categorias_cuentas_editar.php?idcategorias='. $id .'">Editar</a> ' . "</td>
-                        <td>" . '<a href="categorias_cuentas_procesar.php?idcategorias='. $id .'&operacion=activar">Activar</a>' . "</td>
+                        <td>" . $cat['idcuentacontable'] . "</td>
+                        <td>" . $cat['cuentacontable'] . "</td>
+                        <td>" . $cat['gruposcuenta'] . "</td>
+                        <td>" . $cat['tipocuenta'] . "</td>
+                        <td>" . '<a href="catalogo_cuentas_editar.php?idcuenta='. $id .'">Editar</a> ' . "</td>
+                        <td>" . '<a href="catalogo_cuentas_procesar.php?idcuenta='. $id .'&operacion=inactivar">Inactivar</a>' . "</td>
                         </tr>";
                             }}else{?>
                                

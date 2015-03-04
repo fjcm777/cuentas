@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-02-2015 a las 18:39:26
+-- Tiempo de generación: 01-03-2015 a las 23:30:58
 -- Versión del servidor: 5.6.20
 -- Versión de PHP: 5.5.15
 
@@ -44,14 +44,14 @@ CREATE TABLE IF NOT EXISTS `categoriascuentas` (
   `categoria` varchar(45) NOT NULL,
   `idestructurabase` int(11) NOT NULL,
   `estado` tinyint(4) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `categoriascuentas`
 --
 
 INSERT INTO `categoriascuentas` (`idcategorias`, `categoria`, `idestructurabase`, `estado`) VALUES
-(1, 'Activo Circulante', 1, 1);
+(0, 'Ninguno', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -80,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `estructurabase` (
 --
 
 INSERT INTO `estructurabase` (`idestructurabase`, `nombre`) VALUES
+(0, 'Ninguno'),
 (1, 'Activos'),
 (2, 'Pasivos'),
 (3, 'Capital'),
@@ -97,9 +98,30 @@ CREATE TABLE IF NOT EXISTS `gruposcuentas` (
   `grupo` varchar(45) NOT NULL,
   `nivel` int(11) NOT NULL,
   `idTitulossuperior` int(11) NOT NULL,
-  `idcategorias` int(11) NOT NULL
+  `idcategorias` int(11) NOT NULL,
+  `estado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Volcado de datos para la tabla `gruposcuentas`
+--
+
+INSERT INTO `gruposcuentas` (`idgruposcuentas`, `grupo`, `nivel`, `idTitulossuperior`, `idcategorias`, `estado`) VALUES
+(0, 'Ninguna', 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `grupos_cuentas_view`
+--
+CREATE TABLE IF NOT EXISTS `grupos_cuentas_view` (
+`idgrupo` int(11)
+,`grupo` varchar(45)
+,`nivel` int(11)
+,`TituloSuperior` varchar(45)
+,`categoria` varchar(45)
+,`estado` tinyint(4)
+);
 -- --------------------------------------------------------
 
 --
@@ -127,6 +149,15 @@ INSERT INTO `tipocuenta` (`idtipocuenta`, `tipocuenta`) VALUES
 DROP TABLE IF EXISTS `categorias_cuentas_view`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `categorias_cuentas_view` AS select `cc`.`idcategorias` AS `idcategorias`,`cc`.`categoria` AS `categoria`,`eb`.`nombre` AS `nombre`,`cc`.`estado` AS `estado` from (`categoriascuentas` `cc` left join `estructurabase` `eb` on((`cc`.`idestructurabase` = `eb`.`idestructurabase`)));
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `grupos_cuentas_view`
+--
+DROP TABLE IF EXISTS `grupos_cuentas_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `grupos_cuentas_view` AS select `gc`.`idgruposcuentas` AS `idgrupo`,`gc`.`grupo` AS `grupo`,`gc`.`grupo` AS `TituloSuperior`,`cc`.`categoria` AS `categoria`,`gc`.`estado` AS `estado` from ((`gruposcuentas` `gc` left join `categoriascuentas` `cc` on((`gc`.`idcategorias` = `cc`.`idcategorias`))) left join `gruposcuentas` `gc2` on((`gc`.`idTitulossuperior` = `gc2`.`idgruposcuentas`)));
 
 --
 -- Índices para tablas volcadas
@@ -175,7 +206,7 @@ MODIFY `idcuentacontable` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `categoriascuentas`
 --
 ALTER TABLE `categoriascuentas`
-MODIFY `idcategorias` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `idcategorias` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `gruposcuentas`
 --
@@ -207,8 +238,8 @@ ADD CONSTRAINT `fk_categorias_estructurabase1` FOREIGN KEY (`idestructurabase`) 
 -- Filtros para la tabla `gruposcuentas`
 --
 ALTER TABLE `gruposcuentas`
-ADD CONSTRAINT `fk_Titulos_Titulos1` FOREIGN KEY (`idTitulossuperior`) REFERENCES `gruposcuentas` (`idgruposcuentas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_Titulos_categorias1` FOREIGN KEY (`idcategorias`) REFERENCES `categoriascuentas` (`idcategorias`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ADD CONSTRAINT `fk_Titulos_categorias1` FOREIGN KEY (`idcategorias`) REFERENCES `categoriascuentas` (`idcategorias`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_idgrupocuentas` FOREIGN KEY (`idTitulossuperior`) REFERENCES `gruposcuentas` (`idgruposcuentas`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

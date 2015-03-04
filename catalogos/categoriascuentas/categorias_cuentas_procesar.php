@@ -3,7 +3,6 @@
 include_once './CategoriasCuentas.php';
 
 $cat_cuenta = new CategoriasCuentas();
-//$cate = $cat_cuenta->leerDatos();
 
 $post = filter_input(INPUT_POST, 'operacion'); 
 $get = filter_input(INPUT_GET, 'operacion');
@@ -64,7 +63,6 @@ switch($operacion){
       }
       
     break;
-     
     
 }
 

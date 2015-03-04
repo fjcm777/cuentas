@@ -19,6 +19,7 @@ $cate = $cat_cuenta->leerDatos();
             <div class="row">
                 <div class="span3 well-sm"></div>
                 <div class="span3 well">
+                    <h4><center>Lista de categoria de cuentas</center></h4>
                     <div class="navbar navbar-inner block-header">
                         <a href="<?php echo INICIO;?>catalogos/categoriascuentas/categorias_cuentas_crear.php" class="btn btn-success">Crear Nueva Categoría de Cuenta</a>
                     </div>
@@ -41,7 +42,7 @@ $cate = $cat_cuenta->leerDatos();
                         <td>" . $cat['categoria'] . "</td>
                         <td>" . $cat['nombre'] . "</td>
                         <td>" . '<a href="categorias_cuentas_editar.php?idcategorias='. $id .'">Editar</a> ' . "</td>
-                        <td>" . '<a id="desactivar" href="categorias_cuentas_procesar.php?idcategorias='. $id .'&operacion=inactivar">Inactiva</a>' . "</td>
+                        <td>" . '<a href="categorias_cuentas_procesar.php?idcategorias='. $id .'&operacion=inactivar">Inactiva</a>' . "</td>
                         </tr>";
                             }}else{?>
                                
